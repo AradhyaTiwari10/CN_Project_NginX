@@ -1,0 +1,22 @@
+NGINX LOG FINDINGS - Phase 1
+Source: original access.log and error.log supplied by Chaitanya via user.
+Times below are 2026-10-04, IST (+05:30).
+
+23:30:18: Overall HTTP 200. Windows A attempt recorded upstream_status=504,
+then Anuj B recorded 200. Confirms retry to surviving backend in same request.
+
+23:31:47: Overall HTTP 504. Upstream order was B then A; statuses 502,504.
+Error log for request *70 records B connection refused at 23:31:44,
+then A connection timeout at 23:31:47. Thus actual client error was 504,
+not the assignment table's expected 502. Preserve and explain actual result.
+These logs establish upstream unavailability; process stop itself is based
+on the coordinated user procedure, not inferred solely from network errors.
+
+23:32:55: HTTP 200 from B, showing partial recovery.
+23:39:23-24: Six HTTP 200 requests alternate A,B,A,B,A,B.
+23:39:59: /cache HTTP 200 from A.
+23:40:42: /cache HTTP 304 from B; screenshot supplies matching ETag.
+23:53:26: /api/status HTTP 200 from A after DNS record restoration.
+
+Do not attribute Windows connection timeout to a specific firewall or
+process cause based solely on these logs.

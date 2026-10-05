@@ -1,0 +1,67 @@
+PHASE 1 DEMO AND VIVA GUIDE
+
+Suggested speaking roles (every member must understand all components):
+Aradhya: topology, DNS, packet capture and failure diagnosis.
+Chaitanya: nginx, TLS termination, upstream distribution and logs.
+Vedant: Backend A, HTTP responses, Windows firewall and ports.
+Anuj: Backend B, cache headers, ETag and 304 response.
+
+DEMONSTRATION
+1. Show report topology, inventory and ping matrix.
+2. On a client Mac run dig app.team1.test and dig api.team1.test.
+   Explain resolver 10.7.15.68, edge answer 10.7.22.151 and TTL 30.
+3. Run curl -i https://app.team1.test:8443/api/status without -k.
+4. Repeat six requests. Explain X-Backend A/B and X-Edge Chaitanya.
+5. Open Evidence/Captures/phase1-protocol-flow.pcapng in Wireshark.
+   Filters: dns; frame.number >= 3 && frame.number <= 5;
+   frame.number >= 6 && frame.number <= 12; tls.record.content_type == 23.
+   DNS is loopback here because Aradhya is both resolver and client.
+   Peer DNS screenshots separately prove LAN access to the resolver.
+6. curl -i https://app.team1.test:8443/cache
+   Copy its ETag into a second request:
+   curl -i -H 'If-None-Match: "<actual ETag value>"' https://app.team1.test:8443/cache
+   Expect 304 and no body. Use the actual ETag, including its double quotes.
+7. Present five failure/recovery pairs in report. If requested live, inject
+   one failure at a time, record output and restore before the next test.
+8. Explain the actual 504 using access.log upstream_status=502, 504.
+
+CONTROLLED FAILURE REPRODUCTION
+A stopped: Vedant Ctrl+C; edge should return 200 from B. Restart A afterward.
+Both stopped: stop both; observe actual nginx status; restart both and verify A/B.
+Wrong port: curl --connect-timeout 5 --max-time 8 -v https://app.team1.test:8444/api/status
+Then repeat at 8443 for recovery.
+Wrong resolver on Aradhya:
+sudo /usr/sbin/networksetup -setdnsservers "Wi-Fi" 10.7.2.89
+Wait 5 seconds, print configured resolver, run dig and /sbin/ping to the edge.
+Restore 10.7.15.68 immediately after evidence, wait 5 seconds, verify dig.
+Wrong record on Aradhya: Ctrl+C normal DNS, start start-dns-wrong-record.sh
+with sudo. It points app.team1.test to Vedant. Run dig, flush client cache,
+then curl with timeouts. Restore by Ctrl+C and starting normal start-dns.sh,
+flush the client cache again, verify correct answer and HTTP 200.
+
+SHORT VIVA ANSWERS
+Why .test? A reserved testing namespace; .local conflicts with multicast DNS.
+Does DNS connect to the application? No. It returns an address; TCP then connects.
+Why can ping pass while DNS fails? ICMP to an IP does not require name resolution.
+What identifies a connection? Source/destination IPs and ports plus transport protocol.
+Why three TCP packets? SYN, SYN-ACK and ACK establish sequence state in both directions.
+Why Ack=1 initially? SYN consumes one position in TCP sequence space.
+What is an ephemeral port? A temporary client-side port, here 56700 for the captured HTTPS flow.
+Where does TLS end? At nginx; the backend hop uses plaintext HTTP on the LAN.
+What does certificate validation check? Trusted certificate path/explicit trust,
+validity dates and matching hostname; possession of the private key is established
+through the handshake. A self-signed cert needs explicit local trust.
+Why no -k? It bypasses certificate verification and would not prove trusted HTTPS.
+Why TLS1.2 in the capture? It exposes the certificate handshake message for teaching.
+What is SNI? The hostname sent in ClientHello so the server can choose a TLS configuration.
+What does 304 mean? The selected representation matches the validator; reuse cached content.
+Is curl automatically caching? Not in these tests. If-None-Match was explicitly supplied.
+Why same ETag on A/B? Both serve identical /cache bytes and hash those bytes.
+502 versus 504? A bad upstream exchange/connect refusal may produce 502;
+an upstream timeout produces 504. Our retry chain ended in a timeout.
+Active or passive checks? nginx used passive max_fails/fail_timeout and request retries.
+HTTP1.1 versus HTTP2? HTTP2 multiplexes streams over one TCP connection;
+HTTP1.1 uses textual message framing. The nginx backend hop was HTTP1.1.
+HTTP3? Uses QUIC over UDP; explanation only, not implemented here.
+Cloud analogy? Managed DNS, an application load balancer, and application instances.
+Email analogy? SMTP submits/transfers mail; IMAP/POP retrieve it. No email service built.

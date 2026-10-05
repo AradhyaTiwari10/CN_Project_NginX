@@ -1,0 +1,26 @@
+[
+  {
+    "request": 1,
+    "exit_code": 0,
+    "response": "HTTP/2 200 \nserver: nginx/1.31.6\ndate: Sun, 04 Oct 2026 18:08:46 GMT\ncontent-type: application/json\ncontent-length: 33\nx-backend: B\ncache-control: no-store\nx-edge: Chaitanya\n\n{\"backend\": \"B\", \"status\": \"ok\"}\n",
+    "error": ""
+  },
+  {
+    "request": 2,
+    "exit_code": 0,
+    "response": "HTTP/2 200 \nserver: nginx/1.31.6\ndate: Sun, 04 Oct 2026 18:08:46 GMT\ncontent-type: application/json\ncontent-length: 33\nx-backend: B\ncache-control: no-store\nx-edge: Chaitanya\n\n{\"backend\": \"B\", \"status\": \"ok\"}\n",
+    "error": ""
+  },
+  {
+    "request": 3,
+    "exit_code": 0,
+    "response": "HTTP/2 200 \nserver: nginx/1.31.6\ndate: Sun, 04 Oct 2026 18:08:46 GMT\ncontent-type: application/json\ncontent-length: 33\nx-backend: A\ncache-control: no-store\nx-edge: Chaitanya\n\n{\"backend\": \"A\", \"status\": \"ok\"}\n",
+    "error": ""
+  },
+  {
+    "request": 4,
+    "exit_code": 0,
+    "response": "HTTP/2 200 \nserver: nginx/1.31.6\ndate: Sun, 04 Oct 2026 18:08:46 GMT\ncontent-type: application/json\ncontent-length: 33\nx-backend: B\ncache-control: no-store\nx-edge: Chaitanya\n\n{\"backend\": \"B\", \"status\": \"ok\"}\n",
+    "error": ""
+  }
+]

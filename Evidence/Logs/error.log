@@ -1,0 +1,104 @@
+2026/10/04 22:36:25 [notice] 32117#0: using the "kqueue" event method
+2026/10/04 22:36:25 [notice] 32117#0: nginx/1.31.6
+2026/10/04 22:36:25 [notice] 32117#0: built by clang 17.0.0 (clang-1700.6.4.2)
+2026/10/04 22:36:25 [notice] 32117#0: OS: Darwin 24.6.0
+2026/10/04 22:36:25 [notice] 32117#0: hw.ncpu: 8
+2026/10/04 22:36:25 [notice] 32117#0: net.inet.tcp.sendspace: 131072
+2026/10/04 22:36:25 [notice] 32117#0: kern.ipc.somaxconn: 128
+2026/10/04 22:36:25 [notice] 32117#0: hw.cachelinesize: 128
+2026/10/04 22:36:25 [notice] 32117#0: getrlimit(RLIMIT_NOFILE): 256:9223372036854775807
+2026/10/04 22:36:25 [notice] 32117#0: start worker processes
+2026/10/04 22:36:25 [notice] 32117#0: start worker process 32120
+2026/10/04 22:39:11 [info] 32120#0: *1 client closed connection while waiting for request, client: 10.7.15.68, server: 0.0.0.0:8443
+2026/10/04 22:39:11 [info] 32120#0: *2 client closed connection while waiting for request, client: 10.7.15.68, server: 0.0.0.0:8443
+2026/10/04 22:39:43 [warn] 32120#0: *3 upstream server temporarily disabled while connecting to upstream, client: 10.7.15.68, server: app.team1.test, request: "GET /api/status HTTP/1.1", upstream: "http://10.7.2.89:3001/api/status", host: "app.team1.test:8443"
+2026/10/04 22:39:43 [error] 32120#0: *3 upstream timed out (60: Operation timed out) while connecting to upstream, client: 10.7.15.68, server: app.team1.test, request: "GET /api/status HTTP/1.1", upstream: "http://10.7.2.89:3001/api/status", host: "app.team1.test:8443"
+2026/10/04 22:39:53 [warn] 32120#0: *3 upstream server temporarily disabled while reading response header from upstream, client: 10.7.15.68, server: app.team1.test, request: "GET /api/status HTTP/1.1", upstream: "http://10.7.6.93:3002/api/status", host: "app.team1.test:8443"
+2026/10/04 22:39:53 [error] 32120#0: *3 upstream timed out (60: Operation timed out) while reading response header from upstream, client: 10.7.15.68, server: app.team1.test, request: "GET /api/status HTTP/1.1", upstream: "http://10.7.6.93:3002/api/status", host: "app.team1.test:8443"
+2026/10/04 22:39:53 [info] 32120#0: *3 client 10.7.15.68 closed keepalive connection
+2026/10/04 22:43:40 [info] 32120#0: *6 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 22:45:21 [info] 32120#0: *8 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 22:46:09 [warn] 32120#0: *10 upstream server temporarily disabled while connecting to upstream, client: 10.7.15.68, server: app.team1.test, request: "HEAD /cache HTTP/2.0", upstream: "http://10.7.2.89:3001/cache", host: "app.team1.test:8443"
+2026/10/04 22:46:09 [error] 32120#0: *10 upstream timed out (60: Operation timed out) while connecting to upstream, client: 10.7.15.68, server: app.team1.test, request: "HEAD /cache HTTP/2.0", upstream: "http://10.7.2.89:3001/cache", host: "app.team1.test:8443"
+2026/10/04 22:46:09 [info] 32120#0: *10 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 22:46:10 [info] 32120#0: *12 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 22:46:44 [info] 32120#0: *13 kevent() reported that client 10.7.15.68 closed keepalive connection
+2026/10/04 22:46:44 [info] 32120#0: *14 kevent() reported that client 10.7.15.68 closed keepalive connection
+2026/10/04 22:46:47 [warn] 32120#0: *15 upstream server temporarily disabled while connecting to upstream, client: 10.7.15.68, server: app.team1.test, request: "GET /api/status HTTP/1.1", upstream: "http://10.7.2.89:3001/api/status", host: "app.team1.test:8443"
+2026/10/04 22:46:47 [error] 32120#0: *15 upstream timed out (60: Operation timed out) while connecting to upstream, client: 10.7.15.68, server: app.team1.test, request: "GET /api/status HTTP/1.1", upstream: "http://10.7.2.89:3001/api/status", host: "app.team1.test:8443"
+2026/10/04 22:46:47 [info] 32120#0: *15 kevent() reported that client 10.7.15.68 closed keepalive connection
+2026/10/04 22:46:48 [info] 32120#0: *17 kevent() reported that client 10.7.15.68 closed keepalive connection
+2026/10/04 22:46:52 [info] 32120#0: *18 kevent() reported that client 10.7.15.68 closed keepalive connection
+2026/10/04 22:46:54 [info] 32120#0: *19 kevent() reported that client 10.7.15.68 closed keepalive connection
+2026/10/04 22:48:57 [info] 32120#0: *20 kevent() reported that client 10.7.15.68 closed keepalive connection
+2026/10/04 22:51:44 [notice] 32117#0: signal 28 (SIGWINCH) received from 28123
+2026/10/04 22:51:44 [notice] 32120#0: signal 28 (SIGWINCH) received from 28123
+2026/10/04 22:51:44 [info] 32120#0: kevent() failed (4: Interrupted system call)
+2026/10/04 22:52:41 [warn] 32120#0: *22 upstream server temporarily disabled while connecting to upstream, client: 10.7.22.151, server: app.team1.test, request: "GET /api/status HTTP/1.1", upstream: "http://10.7.2.89:3001/api/status", host: "app.team1.test:8443"
+2026/10/04 22:52:41 [error] 32120#0: *22 upstream timed out (60: Operation timed out) while connecting to upstream, client: 10.7.22.151, server: app.team1.test, request: "GET /api/status HTTP/1.1", upstream: "http://10.7.2.89:3001/api/status", host: "app.team1.test:8443"
+2026/10/04 22:52:41 [info] 32120#0: *22 client 10.7.22.151 closed keepalive connection
+2026/10/04 22:53:39 [info] 32120#0: *25 kevent() reported that client 10.7.6.93 closed keepalive connection
+2026/10/04 22:54:26 [warn] 32120#0: *28 upstream server temporarily disabled while connecting to upstream, client: 10.7.15.68, server: app.team1.test, request: "GET /favicon.ico HTTP/2.0", upstream: "http://10.7.2.89:3001/favicon.ico", host: "app.team1.test:8443", referrer: "https://app.team1.test:8443/"
+2026/10/04 22:54:26 [error] 32120#0: *28 upstream timed out (60: Operation timed out) while connecting to upstream, client: 10.7.15.68, server: app.team1.test, request: "GET /favicon.ico HTTP/2.0", upstream: "http://10.7.2.89:3001/favicon.ico", host: "app.team1.test:8443", referrer: "https://app.team1.test:8443/"
+2026/10/04 22:58:11 [info] 32120#0: *30 kevent() reported that client 10.7.15.68 closed keepalive connection
+2026/10/04 22:58:12 [info] 32120#0: *32 kevent() reported that client 10.7.15.68 closed keepalive connection
+2026/10/04 22:58:22 [warn] 32120#0: *33 upstream server temporarily disabled while reading response header from upstream, client: 10.7.15.68, server: app.team1.test, request: "GET /api/status HTTP/1.1", upstream: "http://10.7.2.89:3001/api/status", host: "app.team1.test:8443"
+2026/10/04 22:58:22 [error] 32120#0: *33 upstream timed out (60: Operation timed out) while reading response header from upstream, client: 10.7.15.68, server: app.team1.test, request: "GET /api/status HTTP/1.1", upstream: "http://10.7.2.89:3001/api/status", host: "app.team1.test:8443"
+2026/10/04 22:58:22 [info] 32120#0: *33 kevent() reported that client 10.7.15.68 closed keepalive connection
+2026/10/04 22:58:24 [info] 32120#0: *35 kevent() reported that client 10.7.15.68 closed keepalive connection
+2026/10/04 22:58:24 [info] 32120#0: *36 kevent() reported that client 10.7.15.68 closed keepalive connection
+2026/10/04 22:58:24 [info] 32120#0: *37 client 10.7.15.68 closed keepalive connection
+2026/10/04 22:58:24 [info] 32120#0: *38 client 10.7.15.68 closed keepalive connection
+2026/10/04 22:58:24 [info] 32120#0: *39 kevent() reported that client 10.7.15.68 closed keepalive connection
+2026/10/04 22:59:30 [info] 32120#0: *40 kevent() reported that client 10.7.15.68 closed keepalive connection
+2026/10/04 23:00:28 [info] 32120#0: *42 kevent() reported that client 10.7.15.68 closed keepalive connection
+2026/10/04 23:01:02 [info] 32120#0: *43 kevent() reported that client 10.7.15.68 closed keepalive connection
+2026/10/04 23:01:02 [info] 32120#0: *45 kevent() reported that client 10.7.15.68 closed keepalive connection
+2026/10/04 23:01:02 [info] 32120#0: *46 kevent() reported that client 10.7.15.68 closed keepalive connection
+2026/10/04 23:01:03 [info] 32120#0: *47 kevent() reported that client 10.7.15.68 closed keepalive connection
+2026/10/04 23:01:03 [info] 32120#0: *48 client 10.7.15.68 closed keepalive connection
+2026/10/04 23:01:04 [info] 32120#0: *49 client 10.7.15.68 closed keepalive connection
+2026/10/04 23:01:04 [info] 32120#0: *50 client 10.7.15.68 closed keepalive connection
+2026/10/04 23:01:04 [info] 32120#0: *51 client 10.7.15.68 closed keepalive connection
+2026/10/04 23:05:19 [notice] 32117#0: signal 28 (SIGWINCH) received from 28123
+2026/10/04 23:05:19 [notice] 32120#0: signal 28 (SIGWINCH) received from 28123
+2026/10/04 23:05:19 [info] 32120#0: kevent() failed (4: Interrupted system call)
+2026/10/04 23:05:52 [info] 32120#0: *56 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:05:52 [info] 32120#0: *57 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:05:53 [info] 32120#0: *58 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:07:38 [warn] 32120#0: *61 upstream server temporarily disabled while connecting to upstream, client: 10.7.15.68, server: app.team1.test, request: "GET /api/status HTTP/2.0", upstream: "http://10.7.2.89:3001/api/status", host: "app.team1.test:8443"
+2026/10/04 23:07:38 [error] 32120#0: *61 upstream timed out (60: Operation timed out) while connecting to upstream, client: 10.7.15.68, server: app.team1.test, request: "GET /api/status HTTP/2.0", upstream: "http://10.7.2.89:3001/api/status", host: "app.team1.test:8443"
+2026/10/04 23:07:38 [info] 32120#0: *61 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:07:39 [info] 32120#0: *63 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:07:39 [info] 32120#0: *64 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:12:15 [notice] 32120#0: signal 28 (SIGWINCH) received from 28123
+2026/10/04 23:12:15 [notice] 32117#0: signal 28 (SIGWINCH) received from 28123
+2026/10/04 23:12:15 [info] 32120#0: kevent() failed (4: Interrupted system call)
+2026/10/04 23:12:15 [notice] 32120#0: signal 28 (SIGWINCH) received from 28123
+2026/10/04 23:12:15 [info] 32120#0: kevent() failed (4: Interrupted system call)
+2026/10/04 23:12:15 [notice] 32117#0: signal 28 (SIGWINCH) received from 28123
+2026/10/04 23:30:00 [info] 32120#0: *65 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:30:18 [warn] 32120#0: *68 upstream server temporarily disabled while connecting to upstream, client: 10.7.15.68, server: app.team1.test, request: "GET /api/status HTTP/2.0", upstream: "http://10.7.2.89:3001/api/status", host: "app.team1.test:8443"
+2026/10/04 23:30:18 [error] 32120#0: *68 upstream timed out (60: Operation timed out) while connecting to upstream, client: 10.7.15.68, server: app.team1.test, request: "GET /api/status HTTP/2.0", upstream: "http://10.7.2.89:3001/api/status", host: "app.team1.test:8443"
+2026/10/04 23:30:18 [info] 32120#0: *68 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:31:44 [error] 32120#0: *70 kevent() reported that connect() failed (61: Connection refused) while connecting to upstream, client: 10.7.15.68, server: app.team1.test, request: "GET /api/status HTTP/2.0", upstream: "http://10.7.6.93:3002/api/status", host: "app.team1.test:8443"
+2026/10/04 23:31:44 [warn] 32120#0: *70 upstream server temporarily disabled while connecting to upstream, client: 10.7.15.68, server: app.team1.test, request: "GET /api/status HTTP/2.0", upstream: "http://10.7.6.93:3002/api/status", host: "app.team1.test:8443"
+2026/10/04 23:31:47 [warn] 32120#0: *70 upstream server temporarily disabled while connecting to upstream, client: 10.7.15.68, server: app.team1.test, request: "GET /api/status HTTP/2.0", upstream: "http://10.7.2.89:3001/api/status", host: "app.team1.test:8443"
+2026/10/04 23:31:47 [error] 32120#0: *70 upstream timed out (60: Operation timed out) while connecting to upstream, client: 10.7.15.68, server: app.team1.test, request: "GET /api/status HTTP/2.0", upstream: "http://10.7.2.89:3001/api/status", host: "app.team1.test:8443"
+2026/10/04 23:32:55 [info] 32120#0: *73 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:33:23 [info] 32120#0: *75 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:33:26 [warn] 32120#0: *76 upstream server temporarily disabled while connecting to upstream, client: 10.7.15.68, server: app.team1.test, request: "GET /api/status HTTP/2.0", upstream: "http://10.7.2.89:3001/api/status", host: "app.team1.test:8443"
+2026/10/04 23:33:26 [error] 32120#0: *76 upstream timed out (60: Operation timed out) while connecting to upstream, client: 10.7.15.68, server: app.team1.test, request: "GET /api/status HTTP/2.0", upstream: "http://10.7.2.89:3001/api/status", host: "app.team1.test:8443"
+2026/10/04 23:33:26 [info] 32120#0: *76 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:33:26 [info] 32120#0: *78 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:33:26 [info] 32120#0: *79 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:33:26 [info] 32120#0: *80 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:38:46 [info] 32120#0: *82 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:38:46 [info] 32120#0: *84 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:38:46 [info] 32120#0: *85 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:38:46 [info] 32120#0: *87 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:39:24 [info] 32120#0: *90 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:39:24 [info] 32120#0: *92 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:39:59 [info] 32120#0: *94 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:42:21 [info] 32120#0: *99 kevent() reported that client 10.7.15.68 closed idle connection
+2026/10/04 23:53:26 [info] 32120#0: *101 kevent() reported that client 10.7.15.68 closed idle connection

@@ -1,0 +1,15 @@
+[req]
+prompt = no
+distinguished_name = dn
+x509_extensions = server_cert
+[dn]
+CN = app.team1.test
+O = CN Phase 1 Project
+[server_cert]
+basicConstraints = critical,CA:FALSE
+keyUsage = critical,digitalSignature,keyEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = @names
+[names]
+DNS.1 = app.team1.test
+DNS.2 = api.team1.test

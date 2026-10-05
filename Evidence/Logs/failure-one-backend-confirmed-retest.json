@@ -1,0 +1,60 @@
+{
+  "time": "2026-10-04T23:30:01.038550+05:30",
+  "context": "User clarified previous stop was not performed; now explicitly confirms A stopped. Earlier test does not independently establish process stop.",
+  "checks": [
+    {
+      "label": "A direct",
+      "command": [
+        "/usr/bin/curl",
+        "--noproxy",
+        "*",
+        "--connect-timeout",
+        "5",
+        "--max-time",
+        "20",
+        "-sS",
+        "-i",
+        "http://10.7.2.89:3001/api/status"
+      ],
+      "exit_code": 28,
+      "response": "",
+      "error": "curl: (28) Failed to connect to 10.7.2.89 port 3001 after 5006 ms: Timeout was reached\n"
+    },
+    {
+      "label": "Edge request 1",
+      "command": [
+        "/usr/bin/curl",
+        "--noproxy",
+        "*",
+        "--connect-timeout",
+        "5",
+        "--max-time",
+        "20",
+        "-sS",
+        "-i",
+        "https://app.team1.test:8443/api/status"
+      ],
+      "exit_code": 0,
+      "response": "HTTP/2 200 \nserver: nginx/1.31.6\ndate: Sun, 04 Oct 2026 18:00:00 GMT\ncontent-type: application/json\ncontent-length: 33\nx-backend: B\ncache-control: no-store\nx-edge: Chaitanya\n\n{\"backend\": \"B\", \"status\": \"ok\"}\n",
+      "error": ""
+    },
+    {
+      "label": "Edge request 2",
+      "command": [
+        "/usr/bin/curl",
+        "--noproxy",
+        "*",
+        "--connect-timeout",
+        "5",
+        "--max-time",
+        "20",
+        "-sS",
+        "-i",
+        "https://app.team1.test:8443/api/status"
+      ],
+      "exit_code": 0,
+      "response": "HTTP/2 200 \nserver: nginx/1.31.6\ndate: Sun, 04 Oct 2026 18:00:00 GMT\ncontent-type: application/json\ncontent-length: 33\nx-backend: B\ncache-control: no-store\nx-edge: Chaitanya\n\n{\"backend\": \"B\", \"status\": \"ok\"}\n",
+      "error": ""
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "url": "http://10.7.2.89:3001/",
+    "exit_code": 0,
+    "response": "HTTP/1.1 200 OK\nServer: BaseHTTP/0.6 Python/3.13.14\nDate: Sun, 04 Oct 2026 18:56:44 GMT\nContent-Type: application/json\nContent-Length: 33\nX-Backend: A\nCache-Control: no-store\n\n{\"backend\": \"A\", \"status\": \"ok\"}\n",
+    "error": ""
+  },
+  {
+    "url": "http://10.7.6.93:3002/",
+    "exit_code": 0,
+    "response": "HTTP/1.1 200 OK\nServer: BaseHTTP/0.6 Python/3.13.9\nDate: Sun, 04 Oct 2026 18:56:45 GMT\nContent-Type: application/json\nContent-Length: 33\nX-Backend: B\nCache-Control: no-store\n\n{\"backend\": \"B\", \"status\": \"ok\"}\n",
+    "error": ""
+  },
+  {
+    "url": "https://app.team1.test:8443/",
+    "exit_code": 0,
+    "response": "HTTP/2 200 \nserver: nginx/1.31.6\ndate: Sun, 04 Oct 2026 18:56:46 GMT\ncontent-type: application/json\ncontent-length: 33\nx-backend: B\ncache-control: no-store\nx-edge: Chaitanya\n\n{\"backend\": \"B\", \"status\": \"ok\"}\n",
+    "error": ""
+  }
+]

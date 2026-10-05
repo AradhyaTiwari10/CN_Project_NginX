@@ -1,0 +1,35 @@
+COMPUTER NETWORKS PHASE 1 SUBMISSION
+
+Team NginX, Section E. The GitHub repository contains:
+Report/CN_Phase1_Report.pdf - reading and printing copy, with 30 evidence figures.
+Report/CN_Phase1_Report.docx - editable copy of the same report.
+Report/topology.png - standalone architecture diagram.
+Evidence/index.csv - map from figure number to screenshot and interpretation.
+Evidence/Screenshots - selected original images embedded in the report.
+Evidence/Originals - received images and troubleshooting history.
+Evidence/Captures - Wireshark captures and packet annotations.
+Evidence/Logs - nginx logs and saved verification exports.
+Configuration - deployed nginx and DNS configuration, machine inventory.
+Code - Python backend and machine-specific setup/launch packages.
+Guides - restart, shutdown, firewall and viva instructions.
+
+Phase 1 only. No Phase 2 extensions or Phase 2 final report are included.
+The faculty brief requests an architecture document, configuration bundle,
+backend code, evidence folder and a live checkpoint demonstration.
+The submission form additionally REQUIRES a GitHub repository and a five-minute
+video (maximum 500 MB), including the failure demonstration. Share the video
+Drive link for viewing and test access without signing in.
+
+IMPORTANT REVIEW NOTES
+- Vedant used Windows instead of the brief's macOS hardware suggestion/rule.
+  Disclose this variation; faculty acceptance has not been independently confirmed.
+- Both-backends-unavailable returned 504, not the brief's expected 502.
+  Logs establish B refusal followed by A timeout. Explain the actual result.
+- Evidence was collected 4-5 October 2026. Services were stopped and subsequently restarted for form evidence.
+- IP addresses are DHCP-assigned; recheck before the next demo.
+- Project certificate expires 3 November 2026; regenerate and trust again if needed.
+- Private TLS key is intentionally absent. Chaitanya retains it locally or
+  recreates it with prepare-edge.sh and distributes only public/edge.crt.
+- Earlier unsuccessful screenshots are history, not final success evidence.
+
+Recommended live review order and speaking roles are in DEMO_AND_VIVA.txt.

@@ -1,0 +1,19 @@
+Phase 1 protocol evidence: phase1-protocol-flow.pcapng
+
+Frames 1-2: DNS A query and answer for app.team1.test -> 10.7.22.151.
+DNS is on loopback because this client Mac also hosts the DNS service.
+The separate peer DNS evidence demonstrates access from another machine.
+Frames 3-5: TCP three-way handshake, client port 56700 -> edge port 8443.
+SYN relative Seq=0; SYN/ACK Seq=0 Ack=1; ACK Seq=1 Ack=1.
+Frame 6: TLS 1.2 ClientHello, SNI app.team1.test.
+Frame 9: ServerHello, Certificate, ServerKeyExchange, ServerHelloDone.
+Frames 11-12: Key exchange, ChangeCipherSpec and encrypted handshake.
+Frames 16 and 18: Encrypted TLS application data in each direction.
+HTTP contents cannot be read directly from these encrypted packets.
+Frames 21-24: TCP connection teardown, including a final reset.
+
+The associated normal-dns-tls12-curl.txt records certificate verification
+and the HTTP response. TLS 1.2 was selected explicitly for this capture
+so the certificate handshake is visible. Certificate verification was
+not bypassed. The capture was filtered to the project hostname and
+HTTPS port; packet numbers here refer to the filtered capture.

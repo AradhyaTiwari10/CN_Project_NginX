@@ -1,0 +1,31 @@
+figure,title,interpretation,file,original_filename
+E01,Aradhya LAN inventory,"IPv4, subnet, gateway, en0 and active MAC address.",Evidence/Screenshots/E01.png,23-Your-Mac-LAN-inventory.png
+E02,Chaitanya LAN inventory,Edge address and active en0 MAC. Original full-resolution image is included.,Evidence/Screenshots/E02.png,33-Chaitanya-LAN-inventory.png
+E03,Anuj LAN inventory,"Backend B address, subnet, gateway and active MAC.",Evidence/Screenshots/E03.png,32-Anuj-LAN-inventory.png
+E04,Vedant LAN inventory,"Windows Wi-Fi address, /19 prefix, gateway and MAC.",Evidence/Screenshots/E04.png,34-Windows-LAN-inventory.png
+E05,Aradhya ping checks,Chaitanya and Anuj pass; the Windows failure shown here is superseded by the next figure.,Evidence/Screenshots/E05.png,24-Your-Mac-pings-Windows-timeout.png
+E06,Windows ping recovery,Aradhya to Vedant passes after the ICMP rule; 3 of 3 replies.,Evidence/Screenshots/E06.png,28-Your-Mac-to-Windows-ping-success.png
+E07,Chaitanya ping checks,All three peer destinations respond with 0% loss.,Evidence/Screenshots/E07.png,29-Chaitanya-to-all-peers-ping-success.png
+E08,Anuj ping checks,All three peer destinations respond with 0% loss.,Evidence/Screenshots/E08.png,30-Anuj-to-all-peers-ping-success.png
+E09,Vedant ping checks,All three Macs respond with 0% loss.,Evidence/Screenshots/E09.png,31-Windows-to-all-peers-ping-success.png
+E10,Aradhya DNS and HTTPS,"Normal app/api DNS, native resolver and trusted HTTPS 200.",Evidence/Screenshots/E10.png,Your-Mac-normal-DNS-and-HTTPS.png
+E11,Chaitanya DNS client,Both names resolve through Aradhya; normal trusted HTTPS succeeds.,Evidence/Screenshots/E11.jpeg,WhatsApp Unknown 2026-10-04 at 11.16.00 PM/WhatsApp Image 2026-10-04 at 11.15.16 PM.jpeg
+E12,Anuj DNS client,Both names resolve through Aradhya; trusted HTTPS succeeds. Use original image for detailed inspection.,Evidence/Screenshots/E12.jpeg,WhatsApp Unknown 2026-10-04 at 11.17.15 PM/WhatsApp Image 2026-10-04 at 11.17.12 PM (2).jpeg
+E13,DNS response details,A record maps app.team1.test to 10.7.22.151 with TTL 30 seconds.,Evidence/Screenshots/E13.png,01-Wireshark-DNS-answer.png
+E14,TCP three way handshake,"Frames 3 to 5 show SYN, SYN-ACK, ACK and ports 56700 and 8443.",Evidence/Screenshots/E14.png,02-Wireshark-TCP-handshake.png
+E15,TLS handshake,"ClientHello, server certificate and key exchange, followed by ChangeCipherSpec.",Evidence/Screenshots/E15.png,03-Wireshark-TLS-handshake.png
+E16,Encrypted application data,TLS record content type 23; HTTP payload is encrypted.,Evidence/Screenshots/E16.png,04-Wireshark-encrypted-application-data.png
+E17,Load balancing,Six HTTP/2 200 responses alternate A B A B A B.,Evidence/Screenshots/E17.png,11-HTTPS-load-balancing-A-B-alternating.png
+E18,Cacheable response,Backend A returns 200 with max-age=60 and an ETag.,Evidence/Screenshots/E18.png,12-Cache-200-Cache-Control-ETag.png
+E19,Conditional cache validation,Same ETag sent in If-None-Match; B returns 304 with no body.,Evidence/Screenshots/E19.png,13-Cache-conditional-304-Backend-B.png
+E20,One backend unavailable,"After coordinated A shutdown, B serves HTTP/2 200.",Evidence/Screenshots/E20.png,05-One-backend-stopped-HTTPS-200-B.png
+E21,Both backends unavailable,Observed HTTP/2 504. Logs show B refused connection then A timed out.,Evidence/Screenshots/E21.png,06-Backends-unavailable-HTTPS-504.png
+E22,Backend service recovery,B restores service; later A/B alternation confirms full recovery.,Evidence/Screenshots/E22.png,07-Recovery-HTTPS-200-B.png
+E23,Wrong destination port,"DNS succeeds, but TCP 8444 connection is refused.",Evidence/Screenshots/E23.png,14-Wrong-port-8444-connection-refused.png
+E24,Correct destination port,Returning to 8443 yields HTTP/2 200.,Evidence/Screenshots/E24.png,15-Correct-port-8443-recovery-200.png
+E25,Wrong DNS resolver,Configured resolver 10.7.2.89 yields DNS timeout; direct ping succeeds.,Evidence/Screenshots/E25.png,18-Wrong-DNS-resolver-timeout-ping-success.png
+E26,DNS resolver recovery,Resolver restored to 10.7.15.68; correct DNS answer returns.,Evidence/Screenshots/E26.png,19-Wrong-DNS-resolver-recovery.png
+E27,Wrong DNS record,"DNS succeeds but returns 10.7.2.89, the wrong HTTPS destination.",Evidence/Screenshots/E27.png,20-Wrong-record-DNS-answer.png
+E28,Wrong record connection failure,curl uses the incorrect address and TCP connection times out.,Evidence/Screenshots/E28.png,21-Wrong-record-HTTPS-timeout.png
+E29,DNS record recovery,Correct answer 10.7.22.151 and trusted HTTPS 200 from A.,Evidence/Screenshots/E29.png,22-Wrong-record-recovery-DNS-and-HTTPS-200.png
+E30,Windows ping firewall rule,Project ICMP echo allow rule is enabled for the three team Macs.,Evidence/Screenshots/E30.png,27-Windows-ICMP-ping-rule-created.png

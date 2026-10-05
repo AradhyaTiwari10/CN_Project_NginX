@@ -1,0 +1,33 @@
+WINDOWS FIREWALL RECORD
+
+Run firewall commands only in Administrator PowerShell on Vedant's Windows.
+Recorded project changes:
+1. CN_Phase1_Backend_A: inbound TCP 3001 allow from 10.7.15.68,
+   10.7.22.151 and 10.7.6.93 on any profile.
+2. Existing Python Public-profile TCP block was narrowed to ports
+   0-3000 and 3002-65535, leaving 3001 out. The original block overrides
+   an allow rule if both match. Code/Fix_Windows_Backend.ps1 records the fix.
+3. CN_Phase1_Ping: inbound ICMPv4 type 8 from the three Macs, any profile.
+4. User additionally created unrestricted inbound TCP 3001 allow rule:
+   {b8d8559b-7820-439d-945f-9ce315557ebb}
+   DisplayName: CN Phase1 Backend A 3001.
+No blanket firewall disablement is required.
+
+Fresh setup commands (skip a rule if the named rule already exists):
+New-NetFirewallRule -Name "CN_Phase1_Backend_A" -DisplayName "CN Phase1 Backend A" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 3001 -RemoteAddress 10.7.15.68,10.7.22.151,10.7.6.93 -Profile Any
+New-NetFirewallRule -Name "CN_Phase1_Ping" -DisplayName "CN Phase1 Ping" -Direction Inbound -Action Allow -Protocol ICMPv4 -IcmpType 8 -RemoteAddress 10.7.15.68,10.7.22.151,10.7.6.93 -Profile Any
+If an explicit Python block still matches, inspect it before changing it.
+The supplied fix is guarded for the exact rule observed on this machine.
+The extra unrestricted TCP rule is not necessary when the scoped rule works.
+
+Optional cleanup AFTER the project, not during a live demo:
+Run Code/Restore_Windows_Project_Firewall.ps1 to restore the original Python
+TCP block and remove CN_Phase1_Backend_A. Then remove the two additional rules:
+Remove-NetFirewallRule -Name "CN_Phase1_Ping"
+Remove-NetFirewallRule -Name "{b8d8559b-7820-439d-945f-9ce315557ebb}"
+Verify rule names before cleanup; do not remove unrelated firewall rules.
+
+macOS: incoming application permission was allowed for project services.
+Do not disable the whole firewall. DNS reset does not remove app permissions
+or the explicitly trusted certificate. Use each Mac's restore-client.sh for
+certificate-trust cleanup when no longer needed.

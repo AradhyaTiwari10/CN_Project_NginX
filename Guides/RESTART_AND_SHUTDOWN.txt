@@ -1,0 +1,90 @@
+RESTART AND SHUTDOWN GUIDE
+
+PREREQUISITES
+Existing working machines already have these tools. For a fresh setup:
+- Aradhya: Homebrew dnsmasq; start-dns.sh expects the Apple Silicon path
+  /opt/homebrew/opt/dnsmasq/sbin/dnsmasq. Adjust for a different Homebrew prefix.
+- Chaitanya: Homebrew nginx, openssl@3, and Python 3 on PATH.
+- Anuj: Python 3 on PATH. Vedant: Python 3 with the Windows py launcher.
+- Aradhya: Wireshark for capture/review. Macs need sudo for DNS/trust changes.
+
+1. CONNECT AND CHECK ADDRESSES
+All four machines must use the same LAN. Plug into power and keep awake.
+On each Mac: /usr/sbin/networksetup -getinfo "Wi-Fi"
+On Vedant's Windows PowerShell: Get-NetIPConfiguration -InterfaceAlias "Wi-Fi"
+Expected session addresses:
+Aradhya 10.7.15.68; Chaitanya 10.7.22.151; Vedant 10.7.2.89; Anuj 10.7.6.93.
+If any address changed, update before starting:
+- mac1/dnsmasq.conf listen-address for Aradhya; both address= values for Chaitanya.
+- For_Chaitanya/configure-edge.py upstream addresses for Vedant and Anuj.
+- Mac_Client_Setup/configure-client.sh DNS address for Aradhya.
+- Scoped Windows firewall RemoteAddress values for the three Macs.
+- Wrong-record demo configuration and report inventory as applicable.
+Generate fresh evidence if the demonstrated network changes materially.
+
+2. START THE BACKENDS
+Vedant: File Explorer -> extracted For_Windows -> start-backend-a.cmd.
+Leave the server window open. Do not select text in it; press Esc if selected.
+Separate PowerShell:
+curl.exe --max-time 8 -i http://127.0.0.1:3001/api/status
+Anuj: Terminal -> cd into extracted For_Anuj -> bash start-backend-b.sh
+Separate Terminal:
+/usr/bin/curl --max-time 8 -i http://127.0.0.1:3002/api/status
+Both must return 200 and the correct X-Backend header.
+
+3. START THE EDGE
+Chaitanya: Terminal -> cd into For_Chaitanya.
+For existing working configuration: bash start-edge.sh
+For a fresh folder or changed upstream settings: bash prepare-edge.sh first.
+prepare-edge.sh regenerates nginx configuration. It creates a certificate only
+when both key and certificate are absent, reuses an existing pair, and stops if
+only one exists. The submission excludes the private key but retains the public
+certificate as evidence. On a NEW extraction only, move public/edge.crt outside
+For_Chaitanya to preserve it as evidence, then run bash prepare-edge.sh to create
+a fresh pair. Keep the private key on Chaitanya's machine. Redistribute the NEW
+public certificate and refresh client trust/fingerprint whenever regenerated.
+Use Chaitanya's original working folder to retain the original key/certificate.
+The original deployed config in Configuration/nginx-deployed.conf uses
+Chaitanya's original absolute paths. Use the generator for another directory.
+Keep nginx running in its own Terminal.
+
+4. START DNS
+Aradhya: Terminal -> cd into Code/mac1 or the original mac1 directory.
+sudo /bin/sh ./start-dns.sh
+Keep this Terminal open. Use start-dns.sh, not the intentional wrong-record demo.
+In another Terminal:
+/usr/bin/dig @10.7.15.68 app.team1.test +time=5 +tries=1
+Answer must be 10.7.22.151 (or the updated edge IP).
+
+5. CONFIGURE CLIENT DNS AND CERTIFICATE TRUST
+On Aradhya, Chaitanya and Anuj: use the matching Mac_Client_Setup folder.
+The included edge.crt is the original public certificate. If regenerated,
+replace it with Chaitanya's NEW public/edge.crt and update the expected
+fingerprint in configure-client.sh after independent fingerprint comparison.
+Run bash configure-client.sh in that folder. It prompts locally for sudo.
+Never send passwords or the private key.
+Original certificate SHA-256 fingerprint:
+DA:00:3C:F4:A7:A2:3C:85:38:F6:C7:04:E6:56:4B:47:EF:87:3C:0F:C2:09:CC:BA:60:14:BD:0B:46:A4:FE:DA
+Certificate date range: 4 October to 3 November 2026.
+Vedant is a backend; normal private-domain client DNS was not configured there.
+
+6. PRECHECK
+/usr/bin/dig app.team1.test +time=5 +tries=1
+/usr/bin/dig api.team1.test +time=5 +tries=1
+/usr/bin/curl --max-time 20 -i https://app.team1.test:8443/api/status
+Repeat HTTPS requests until both A and B are visible. Do not use -k.
+Confirm pings and /cache before the review. Capture screenshots only after
+commands finish and show the command, destination, result and relevant headers.
+
+7. SAFE SHUTDOWN
+Before stopping DNS, restore client DNS on all three Macs. Prefer the supplied
+restore-client.sh for full cleanup using each Mac's own saved original settings.
+For this session the Macs used automatic DNS before project setup; restoring
+only DNS can be done with:
+sudo /usr/sbin/networksetup -setdnsservers "Wi-Fi" Empty
+sudo /usr/bin/dscacheutil -flushcache
+sudo /usr/bin/killall -HUP mDNSResponder
+Then Ctrl+C in dnsmasq, nginx and both backend server windows.
+On Windows press Esc first, then Ctrl+C; answer Y if asked to terminate batch job.
+Keep all files for the next review. DNS reset alone does not remove certificate
+trust or firewall rules. See FIREWALL_NOTES.txt for cleanup after the project.

@@ -1,0 +1,55 @@
+[
+  {
+    "command": [
+      "/usr/bin/curl",
+      "--noproxy",
+      "*",
+      "--connect-timeout",
+      "8",
+      "--max-time",
+      "20",
+      "-sS",
+      "-i",
+      "https://app.team1.test:8443/api/status"
+    ],
+    "exit_code": 0,
+    "response": "HTTP/2 200 \nserver: nginx/1.31.6\ndate: Sun, 04 Oct 2026 17:35:52 GMT\ncontent-type: application/json\ncontent-length: 33\nx-backend: A\ncache-control: no-store\nx-edge: Chaitanya\n\n{\"backend\": \"A\", \"status\": \"ok\"}\n",
+    "error": ""
+  },
+  {
+    "command": [
+      "/usr/bin/curl",
+      "--noproxy",
+      "*",
+      "--connect-timeout",
+      "8",
+      "--max-time",
+      "20",
+      "-sS",
+      "-i",
+      "https://app.team1.test:8443/cache"
+    ],
+    "exit_code": 0,
+    "response": "HTTP/2 200 \nserver: nginx/1.31.6\ndate: Sun, 04 Oct 2026 17:35:52 GMT\ncontent-type: application/json\ncontent-length: 73\nx-backend: B\ncache-control: public, max-age=60\netag: \"18a8b57eb4f97ce2cde279d8685269a520bb718a79c03da046d874988903b098\"\nx-edge: Chaitanya\n\n{\"message\":\"Same cacheable representation on both backends\",\"version\":1}\n",
+    "error": ""
+  },
+  {
+    "command": [
+      "/usr/bin/curl",
+      "--noproxy",
+      "*",
+      "--connect-timeout",
+      "8",
+      "--max-time",
+      "20",
+      "-sS",
+      "-i",
+      "-H",
+      "If-None-Match: \"18a8b57eb4f97ce2cde279d8685269a520bb718a79c03da046d874988903b098\"",
+      "https://app.team1.test:8443/cache"
+    ],
+    "exit_code": 0,
+    "response": "HTTP/2 304 \nserver: nginx/1.31.6\ndate: Sun, 04 Oct 2026 17:35:53 GMT\nx-backend: A\ncache-control: public, max-age=60\netag: \"18a8b57eb4f97ce2cde279d8685269a520bb718a79c03da046d874988903b098\"\nx-edge: Chaitanya\n\n",
+    "error": ""
+  }
+]

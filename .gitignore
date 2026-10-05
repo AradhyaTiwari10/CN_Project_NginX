@@ -1,0 +1,14 @@
+# Machine-local state and TLS private material
+.DS_Store
+__pycache__/
+*.py[cod]
+*.key
+*.p12
+*.pfx
+.env
+.env.*
+**/runtime/
+**/original-*.txt
+*.backup-*
+# Generated machine-specific nginx file; deployed evidence is in Configuration/
+Code/For_Chaitanya/nginx.conf
